@@ -1,0 +1,608 @@
+{
+	"info": {
+		"_postman_id": "953872fd-b365-4a65-baed-13e70b035451",
+		"name": "Food_Recipes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23292697"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "USERS REGISTER",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "kevin",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "kevin@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "08772234",
+									"type": "text"
+								},
+								{
+									"key": "pw",
+									"value": "vivin",
+									"type": "text"
+								},
+								{
+									"key": "level",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/rhefa/Documents/PijarCamp/Backend/Profile/buffalo.jfif"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3001/user/register",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "USERS LOGIN",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"kevin@gmail.com\",\r\n    \"pw\": \"vivin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/user/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "USERS GET LIST ASC",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtldmluQGdtYWlsLmNvbSIsImxldmVsIjowLCJpYXQiOjE2NjM5MTkyNTJ9.oYOtfma9DzOqLocYdEB6MSp-jEvQeEF4G8qV5hrRjA8",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3001/user",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "USERS GET LIST PAGINATION",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtldmluQGdtYWlsLmNvbSIsImxldmVsIjowLCJpYXQiOjE2NjM5MTkyNTJ9.oYOtfma9DzOqLocYdEB6MSp-jEvQeEF4G8qV5hrRjA8",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3001/user/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "USERS GET DETAIL",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtldmluQGdtYWlsLmNvbSIsImxldmVsIjowLCJpYXQiOjE2NjM5MTkyNTJ9.oYOtfma9DzOqLocYdEB6MSp-jEvQeEF4G8qV5hrRjA8",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3001/user/detail/kevin@gmail.com",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"user",
+								"detail",
+								"kevin@gmail.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "USERS INSERT DATA",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtldmluQGdtYWlsLmNvbSIsImxldmVsIjowLCJpYXQiOjE2NjM5MTkyNTJ9.oYOtfma9DzOqLocYdEB6MSp-jEvQeEF4G8qV5hrRjA8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Ichsan\",\r\n    \"email\": \"ichsan@gmail.com\",\r\n    \"phone\": \"0866399933\",\r\n    \"pw\": \"sansan\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/user",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "USERS UPDATE IMAGE",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InB1dHJpM0BnbWFpbC5jb20iLCJsZXZlbCI6MSwiaWF0IjoxNjYzODU5NzIzfQ.Zg5VOavslJylsDxNi0BcPYA1dN3MS6kftrJKNFd_0Bg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/rhefa/Documents/PijarCamp/Backend/Profile/zebra.jfif"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3001/user/kevin@gmail.com/changeimg",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"user",
+								"kevin@gmail.com",
+								"changeimg"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "USERS UPDATE PASSWORD",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtldmluQGdtYWlsLmNvbSIsImxldmVsIjowLCJpYXQiOjE2NjM5MTkyNTJ9.oYOtfma9DzOqLocYdEB6MSp-jEvQeEF4G8qV5hrRjA8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"kevin@gmail.com\",\r\n    \"pw\": \"kevkev\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/user",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "USERS DELETE DATA",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1vbmFsaXNhQGdtYWlsLmNvbSIsImxldmVsIjowLCJpYXQiOjE2NjM4OTk4NDZ9.zU5A7jjW1qCdFo-Bne_nv6u-IgI3vPQrO2ptv0hOHvQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3001/user/monalisa@gmail.com",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"user",
+								"monalisa@gmail.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "USERS DELETE IMAGE",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtldmluQGdtYWlsLmNvbSIsImxldmVsIjowLCJpYXQiOjE2NjM5MDEwMzJ9.246NFXIndfF37RKP5cCPah13iBIgquFU26whwgZc2zE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3001/user/kevin@gmail.com/deleteimg",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"user",
+								"kevin@gmail.com",
+								"deleteimg"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Recipes",
+			"item": [
+				{
+					"name": "RECIPE GET LIST ASC",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtldmluQGdtYWlsLmNvbSIsImxldmVsIjowLCJpYXQiOjE2NjM5MTkyNTJ9.oYOtfma9DzOqLocYdEB6MSp-jEvQeEF4G8qV5hrRjA8",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3001/recipe",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"recipe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RECIPE GET LIST PAGINATION",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtldmluQGdtYWlsLmNvbSIsImxldmVsIjowLCJpYXQiOjE2NjM5MTkyNTJ9.oYOtfma9DzOqLocYdEB6MSp-jEvQeEF4G8qV5hrRjA8",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3001/recipe/2",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"recipe",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RECIPE GET COMMENT",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtldmluQGdtYWlsLmNvbSIsImxldmVsIjowLCJpYXQiOjE2NjM5MTkyNTJ9.oYOtfma9DzOqLocYdEB6MSp-jEvQeEF4G8qV5hrRjA8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/recipe/comment/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"recipe",
+								"comment",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RECIPE GET DETAIL",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtldmluQGdtYWlsLmNvbSIsImxldmVsIjowLCJpYXQiOjE2NjM5MDEwMzJ9.246NFXIndfF37RKP5cCPah13iBIgquFU26whwgZc2zE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3001/recipe/detail/apel manis",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"recipe",
+								"detail",
+								"apel manis"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RECIPE INSERT DATA",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtldmluQGdtYWlsLmNvbSIsImxldmVsIjowLCJpYXQiOjE2NjM5MDEwMzJ9.246NFXIndfF37RKP5cCPah13iBIgquFU26whwgZc2zE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Jus Apel Manis",
+									"type": "text"
+								},
+								{
+									"key": "ingredient",
+									"value": "Apel, Gula, Karamel",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/rhefa/Documents/PijarCamp/Backend/Recipe/jus jeruk.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3001/recipe/add",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"recipe",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RECIPE UPDATE DATA",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtldmluQGdtYWlsLmNvbSIsImxldmVsIjowLCJpYXQiOjE2NjM5MTkyNTJ9.oYOtfma9DzOqLocYdEB6MSp-jEvQeEF4G8qV5hrRjA8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"jus apel manis\",\r\n    \"ingredient\": \"Gula, Karamel, Apel, Teh\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/recipe",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"recipe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RECIPE DELETE DATA",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtldmluQGdtYWlsLmNvbSIsImxldmVsIjowLCJpYXQiOjE2NjM5MTkyNTJ9.oYOtfma9DzOqLocYdEB6MSp-jEvQeEF4G8qV5hrRjA8",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3001/recipe/jus apel",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"recipe",
+								"jus apel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RECIPE DELETE IMAGE",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtldmluQGdtYWlsLmNvbSIsImxldmVsIjowLCJpYXQiOjE2NjM5MDEwMzJ9.246NFXIndfF37RKP5cCPah13iBIgquFU26whwgZc2zE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3001/recipe/jus apel manis/img",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"recipe",
+								"jus apel manis",
+								"img"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RECIPE UPDATE IMAGE",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtldmluQGdtYWlsLmNvbSIsImxldmVsIjowLCJpYXQiOjE2NjM5MDEwMzJ9.246NFXIndfF37RKP5cCPah13iBIgquFU26whwgZc2zE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/rhefa/Documents/PijarCamp/Backend/Recipe/jus apel.jfif"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3001/recipe/jus apel manis/changeimg",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"recipe",
+								"jus apel manis",
+								"changeimg"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

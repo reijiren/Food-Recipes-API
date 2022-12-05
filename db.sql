@@ -6,6 +6,8 @@ create table users(
     password text,
     image text,
     level integer, -- 0 Admin, 1 User
+    likes text,
+    saved text,
     date_created date
 );
 

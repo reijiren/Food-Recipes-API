@@ -88,16 +88,18 @@ const userModel = {
     })
   },
 
-  updateProfile: ({id, name, phone, password, image}) => {
+  updateProfile: ({id, name, phone, password, image, likes, saved}) => {
     return new Promise((resolve, reject) => {
       db.query(`
         update users set
         name = coalesce ($2, name),
         phone = coalesce ($3, phone),
         password = coalesce ($4, password),
-        image = coalesce ($5, image)
+        image = coalesce ($5, image),
+        likes = coalesce ($6, likes),
+        saved = coalesce ($7, saved)
         where id = $1
-      `, [id, name, phone, password, image],
+      `, [id, name, phone, password, image, likes, saved],
       (err, res) => {
         if (err) {
           reject(err);

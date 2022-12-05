@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"reyrey\",\r\n    \"email\": \"reyrey@gmail.com\",\r\n    \"phone\": \"0815716251=539\",\r\n    \"password\": \"reyrey\",\r\n    \"level\": 1\r\n}",
+							"raw": "{\r\n    \"name\": \"reyrey\",\r\n    \"email\": \"reyrey@gmail.com\",\r\n    \"phone\": \"081571625539\",\r\n    \"password\": \"reyrey\",\r\n    \"level\": 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -44,7 +44,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"reyrey@gmail.com\",\r\n    \"password\": \"rere\"\r\n}",
+							"raw": "{\r\n    \"email\": \"reyrey@gmail.com\",\r\n    \"password\": \"reyrey\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -362,6 +362,66 @@
 					"response": []
 				},
 				{
+					"name": "RECIPES OWNED LIST",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/recipe/owned/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"recipe",
+								"owned",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RECIPES LIKED LIST",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/recipe/liked/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"recipe",
+								"liked",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RECIPES SAVED LIST",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/recipe/saved/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"recipe",
+								"saved",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "RECIPES FIND BY TITLE",
 					"request": {
 						"method": "POST",
@@ -411,22 +471,22 @@
 							"formdata": [
 								{
 									"key": "title",
-									"value": "Teh",
+									"value": "Teh Manis",
 									"type": "text"
 								},
 								{
 									"key": "ingredient",
-									"value": "Teh, Air",
+									"value": "Teh, Gula",
 									"type": "text"
 								},
 								{
 									"key": "image",
 									"type": "file",
-									"src": "/C:/Users/rhefa/Documents/PijarCamp/Backend/Recipe/teh manis 2.jpg"
+									"src": "/C:/Users/rhefa/Documents/PijarCamp/Backend/Recipe/teh manis.jfif"
 								},
 								{
 									"key": "owner",
-									"value": "3",
+									"value": "1",
 									"type": "text"
 								}
 							]
@@ -534,6 +594,103 @@
 							"port": "3001",
 							"path": [
 								"recipe",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Like/Save Recipes",
+			"item": [
+				{
+					"name": "LIKE RECIPE",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": 1,\r\n    \"recipe\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/like",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"like"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SAVE RECIPE",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": 1,\r\n    \"recipe\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/save",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "REMOVE LIKE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/like/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"like",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "REMOVE SAVE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/save/1",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"save",
 								"1"
 							]
 						}

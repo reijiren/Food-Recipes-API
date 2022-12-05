@@ -47,6 +47,39 @@ const recipeController = {
             failed(res, err.message, 'failed', 'Get detailed recipe failed')
         });
     },
+    listOwned: (req, res) => {
+        const id = req.params.id;
+
+        recipeModel.listOwnedRecipes(id)
+        .then((result) => {
+            success(res, result.rows, 'success', 'Get recipe owned list success')
+        })
+        .catch((err) => {
+            failed(res, err.message, 'failed', 'Get recipe owned list failed')
+        });
+    },
+    listLiked: (req, res) => {
+        const id = req.params.id;
+
+        recipeModel.listLikedRecipes(id)
+        .then((result) => {
+            success(res, result.rows, 'success', 'Get recipe liked list success')
+        })
+        .catch((err) => {
+            failed(res, err.message, 'failed', 'Get recipe liked list failed')
+        });
+    },
+    listSaved: (req, res) => {
+        const id = req.params.id;
+
+        recipeModel.listSavedRecipes(id)
+        .then((result) => {
+            success(res, result.rows, 'success', 'Get recipe saved list success')
+        })
+        .catch((err) => {
+            failed(res, err.message, 'failed', 'Get recipe saved list failed')
+        });
+    },
     insert: (req, res) => {
         try{
             const { title, ingredient, owner } = req.body;

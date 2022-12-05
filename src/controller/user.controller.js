@@ -14,8 +14,8 @@ const userController = {
     },
     
     listPaged: (req, res) => {
-        const name = req.query.name;
         const page = req.params.page;
+        const name = req.query.name;
         const sort = req.query.sort;
         const asc = req.query.asc;
 
@@ -99,6 +99,54 @@ const userController = {
         })
         .catch((err) => {
             failed(res, err.message, 'failed', 'Delete user failed')
+        });
+    },
+
+    addLike: (req, res) => {
+        const body = req.body;
+
+        userModel.insertLike(body)
+        .then((result) => {
+            success(res, result.rowCount, 'success', 'Insert like success')
+        })
+        .catch((err) => {
+            failed(res, err.message, 'failed', 'Insert like failed')
+        });
+    },
+
+    addSave: (req, res) => {
+        const body = req.body;
+
+        userModel.insertSave(body)
+        .then((result) => {
+            success(res, result.rowCount, 'success', 'Insert save success')
+        })
+        .catch((err) => {
+            failed(res, err.message, 'failed', 'Insert save failed')
+        });
+    },
+
+    removeLike: (req, res) => {
+        const id = req.params.id;
+
+        userModel.deleteLike(id)
+        .then((result) => {
+            success(res, result.rowCount, 'success', 'Delete like success')
+        })
+        .catch((err) => {
+            failed(res, err.message, 'failed', 'Delete like failed')
+        });
+    },
+
+    removeSave: (req, res) => {
+        const id = req.params.id;
+
+        userModel.deleteSave(id)
+        .then((result) => {
+            success(res, result.rowCount, 'success', 'Delete save success')
+        })
+        .catch((err) => {
+            failed(res, err.message, 'failed', 'Delete save failed')
         });
     },
 }

@@ -95,12 +95,54 @@ const userModel = {
         name = coalesce ($2, name),
         phone = coalesce ($3, phone),
         password = coalesce ($4, password),
-        image = coalesce ($5, image),
-        likes = coalesce ($6, likes),
-        saved = coalesce ($7, saved)
+        image = coalesce ($5, image)
         where id = $1
-      `, [id, name, phone, password, image, likes, saved],
+      `, [id, name, phone, password, image],
       (err, res) => {
+        if (err) {
+          reject(err);
+        }
+        resolve(res);
+      })
+    })
+  },
+
+  insertLike: ({user, recipe}) => {
+    return new Promise((resolve, reject) => {
+      db.query(`insert into likes (users, recipes, date_created) values (${user}, ${recipe}, now());`, (err, res) => {
+        if (err) {
+          reject(err);
+        }
+        resolve(res);
+      })
+    })
+  },
+
+  insertSave: ({user, recipe}) => {
+    return new Promise((resolve, reject) => {
+      db.query(`insert into saved (users, recipes, date_created) values (${user}, ${recipe}, now());`, (err, res) => {
+        if (err) {
+          reject(err);
+        }
+        resolve(res);
+      })
+    })
+  },
+
+  deleteLike: (id) => {
+    return new Promise((resolve, reject) => {
+      db.query(`delete from likes where id = ${id}`, (err, res) => {
+        if (err) {
+          reject(err);
+        }
+        resolve(res);
+      })
+    })
+  },
+
+  deleteSave: (id) => {
+    return new Promise((resolve, reject) => {
+      db.query(`delete from saved where id = ${id}`, (err, res) => {
         if (err) {
           reject(err);
         }

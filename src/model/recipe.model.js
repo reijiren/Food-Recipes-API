@@ -12,6 +12,49 @@ const recipeModel = {
         })
     },
 
+    listOwnedRecipes: (id) => {
+        return new Promise((resolve, reject) => {
+            db.query(`select recipes.* from recipes join users on owner = users.id where owner = ${id}`, (err, res) => {
+                if(err){
+                    reject(err);
+                }
+                resolve(res);
+            })
+        })
+    },
+
+    listLikedRecipes: (id) => {
+        return new Promise((resolve, reject) => {
+            db.query(` 
+                select recipes.* from likes
+                join recipes on likes.recipes = recipes.id
+                join users on likes.users = users.id
+                where likes.users = ${id}
+            `, (err, res) => {
+                if(err){
+                    reject(err);
+                }
+                resolve(res);
+            })
+        })
+    },
+
+    listSavedRecipes: (id) => {
+        return new Promise((resolve, reject) => {
+            db.query(` 
+                select recipes.* from saved
+                join recipes on saved.recipes = recipes.id
+                join users on saved.users = users.id
+                where saved.users = ${id}
+            `, (err, res) => {
+                if(err){
+                    reject(err);
+                }
+                resolve(res);
+            })
+        })
+    },
+
     findRecipesPaged: (title, page, sort, asc) => {
         return new Promise((resolve, reject) => {
             const limit = 2;

@@ -61,9 +61,9 @@ const recipeModel = {
             const offset = (page - 1) * limit;
 
             if(asc.toLowerCase() !== 'desc') asc = 'asc';
-            if(sort.toLowerCase() !== 'date_created') sort = 'title';
+            if(sort.toLowerCase() !== 'id') sort = 'title';
 
-            db.query(`select *, recipes.id as recipeid, recipes.image as recipeimg from recipes join users on owner = users.id where title ilike '%${title}%' order by ${sort} ${asc} limit ${limit} offset ${offset}`, (err, res) => {
+            db.query(`select *, recipes.id as recipeid, recipes.image as recipeimg from recipes join users on owner = users.id where title ilike '%${title}%' order by recipes.${sort} ${asc} limit ${limit} offset ${offset}`, (err, res) => {
                 if(err){
                     reject(err);
                 }

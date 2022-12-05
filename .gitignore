@@ -1,11 +1,5 @@
 node_modules
-!assets/profile/default.png
-!assets/recipes/null.jpg
 assets
 .env
-**/.drawio
-Flowchart.drawio
-**/.jfif
-**/.png
-**/.jpeg
-**/.jpg
+!assets/profile/default.png
+!assets/recipes/null.jpg

@@ -66,6 +66,25 @@
 					"response": []
 				},
 				{
+					"name": "USERS CHECK EMAIL",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/email/reyrey@gmail.com",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"email",
+								"reyrey@gmail.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "USERS GET LIST ASC",
 					"request": {
 						"method": "GET",

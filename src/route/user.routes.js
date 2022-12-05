@@ -1,7 +1,6 @@
-//declare express
 const express = require("express");
 const { list, detail, update, destroy, listPaged, deleteImg, updateImg } = require("../controller/user.controller");
-const { register, login } = require('../controller/auth.controller');
+const { register, login, checkEmail } = require('../controller/auth.controller');
 
 const router = express.Router();
 
@@ -17,6 +16,7 @@ router
 .put("/user/:id", jwtAuth, update)
 .put("/user/changeimg/:id", jwtAuth, uploadPP, deleteProfileImg, updateImg)
 .delete("/user/:id", jwtAuth, isAdmin, deleteProfileImg, destroy)
+.get("/email/:email", checkEmail)
 .post('/user/register', register)
 .post('/user/login', login);
 

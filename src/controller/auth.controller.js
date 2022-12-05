@@ -72,5 +72,17 @@ module.exports = {
         .catch((err) => {
             failed(res, err.message, 'failed', 'Internal server error');
         })
-    }
+    },
+
+    checkEmail: (req, res) => {
+        const email = req.params.email;
+        
+        userModel.checkEmail(email)
+        .then((result) => {
+            success(res, result.rows, 'success', 'Get all user success')
+        })
+        .catch((err) => {
+            failed(res, err.message, 'failed', 'Get all user failed')
+        });
+    },
 }

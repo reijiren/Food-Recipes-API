@@ -79,10 +79,10 @@ module.exports = {
         
         userModel.checkEmail(email)
         .then((result) => {
-            success(res, result.rows, 'success', 'Get all user success')
+            success(res, result.rows, 'success', 'Get email user success')
         })
         .catch((err) => {
-            failed(res, err.message, 'failed', 'Get all user failed')
+            failed(res, err.message, 'failed', 'Get email user failed')
         });
     },
 }

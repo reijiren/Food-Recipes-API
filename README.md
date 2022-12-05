@@ -8,10 +8,6 @@
 
   <p align="center">
     <br />
-    <a href="https://github.com/muhislah/angkasa_backend"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://ankasa-backend-api.herokuapp.com/">View Demo</a>
   </p>
 </p>
 
@@ -34,15 +30,13 @@
 ## About The Project
 
 
-Food Recipes API is a RESTful API used in . This API handle 
-Ankasa Rest API, is REST API used in [`Ankasa Ticketing App`](https://ankasa.vercel.app/) and [`Ankasa Ticketing Admin`](https://ankasa-admin-fwzfrds.vercel.app/). This API handle airline, ticket, booking and user management in app. 
+Food Recipes API is a RESTful API used in .
 
 ### Built With
 
 * [Node JS](https://nodejs.org/en/docs/)
 * [Express JS](https://expressjs.com/)
 * [Node Mailer](https://nodemailer.com/)
-* [Cloudinary](https://cloudinary.com/)
 
 
 <!-- GETTING STARTED -->
@@ -58,27 +52,21 @@ This is an example of how to list things you need to use the software and how to
 
 1. Clone the repo
 ```sh
-git clone https://github.com/muhislah/angkasa_backend.git
+git clone https://github.com/reijiren/Food-Recipes-API.git
 ```
 2. Install NPM packages
 ```sh
 npm install
 ```
-3. Add .env file at root folder project, and add following
+3. Add .env file at your root folder project, and add the following
 ```sh
-CLOUDINARY_CLOUD_NAME = YOUR_CLOUDINARY_CLOUD_NAME
-CLOUDINARY_API_KEY = YOUR_CLOUDINARY_API_KEY 
-CLOUDINARY_API_SECRET = YOUR_CLOUDINARY_API_SECRET
-DB_USER = your_db_user
-DB_HOST = your_host
-DB_NAME = your_db_name
-DB_PASSWORD = your_password
+DB_USERNAME = your_db_username
+DB_HOST = your_db_host
+DB_DATABASE = your_db_database_name
+DB_PASSWORD = your_db_password
 DB_PORT = your_db_port
-
-PORT = 5000
-
-SECRET_KEY = secret_key_for_JWT
-NODE_ENV = "Development"
+PORT = 3001
+jwt_secret = your_token_secret
 
 ```
 
@@ -99,22 +87,3 @@ Contributions are what make the open source community such an amazing place to b
 
 
 ## Related Project
-* [`Ankasa Ticketing App`](https://ankasa.vercel.app/)
-* [`Ankasa Ticketing Admin`](https://ankasa-admin-fwzfrds.vercel.app/)
-* [`Ankasa Ticketing Repository`](https://github.com/muhislah/ankasa-frontend)
-
-
-<!-- CONTACT -->
-## Contact
-
-Contributors names and contact info
-
-* BACKEND TIM
-  * Muhamad Islahuddin [@muhislah](https://github.com/muhislah)
-  * Sendi Alamsyah [@sendialamsyah](https://github.com/sendialamsyah)
-  * Hasbi Alwi Kusmana [@hasbiak](https://github.com/hasbialwikusmana)
-
-* FRONTEND TIM
-  * Muhammad Fawwaz Firdaus [@fwzfrds](https://github.com/fwzfrds)
-  * Nisrina Hasna Nataraharja [@ruirui](https://github.com/NisrinaNataraharja)
-  * Irfan Abidin [@irfan043](https://github.com/irfan43a)

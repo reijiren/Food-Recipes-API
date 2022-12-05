@@ -1,6 +1,6 @@
 node_modules
-!default.png
-!null.jpg
+!assets/profile/default.png
+!assets/recipes/null.jpg
 assets
 .env
 **/.drawio

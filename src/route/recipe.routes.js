@@ -10,13 +10,13 @@ const uploadRP = require('../middleware/uploadRecipePic');
 const deleteRecipeImg = require('../middleware/deleteRecipesPic');
 
 router
-.get("/recipes", jwtAuth, list)
-.get("/recipes/:page", jwtAuth, listPaged)
-.get("/recipe/:id", jwtAuth, detail)
-.post("/recipe/find", jwtAuth, find)
-.post("/recipe/insert", jwtAuth, isCustomer, uploadRP, insert)
-.put("/recipe/:id", jwtAuth, update)
-.put("/recipe/changeimg/:id", jwtAuth, uploadRP, deleteRecipeImg, updateImg)
-.delete("/recipe/:id", jwtAuth, deleteRecipeImg, destroy);
+.get("/recipes", list)
+.get("/recipes/:page", listPaged)
+.get("/recipe/:id", detail)
+.post("/recipe/find", find)
+.post("/recipe/insert", isCustomer, uploadRP, insert)
+.put("/recipe/:id", update)
+.put("/recipe/changeimg/:id", uploadRP, deleteRecipeImg, updateImg)
+.delete("/recipe/:id", deleteRecipeImg, destroy);
 
 module.exports = router;

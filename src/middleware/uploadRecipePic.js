@@ -1,9 +1,6 @@
-//import multer
 const multer = require('multer');
-//import path
 const path = require('path');
 
-//untuk mengunggah file
 const multerUpload = multer({
     storage: multer.diskStorage({
         destination: (req, file, cb) => {
@@ -13,16 +10,18 @@ const multerUpload = multer({
             const name = path.basename(file.originalname);
             const ext = path.extname(file.originalname);
             const nameSplit = name.split(`${ext}`);
-            // console.log(nameSplit);
 
             const fileName = nameSplit[0] + '-' + Date.now() + '' + ext;
             cb(null, fileName)
         }
     }),
 
+    limits:{
+        fileSize: 2 * 1024 * 1024,
+    },
+
     fileFilter: (req, file, cb) => {
         const ext = path.extname(file.originalname);
-        // console.log(ext);
         if(ext === '.jpg' || ext === '.png' || ext === '.jpeg' || ext === '.jfif'){
             cb(null, true);
         }else{
@@ -34,17 +33,16 @@ const multerUpload = multer({
     }
 })
 
-//untuk middleware
 const uploadRecipePic = (req, res, next) => {
     const multerSingle = multerUpload.single('image');
     multerSingle(req, res, (err) => {
         if(err){
             res.json({
-                message: 'err',
+                status: 'failed',
+                message: 'upload recipe image failed',
                 error: err
             })
         }else{
-
             next();
         }
     })

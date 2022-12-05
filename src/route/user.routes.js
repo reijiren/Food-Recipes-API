@@ -1,28 +1,23 @@
 //declare express
 const express = require("express");
-const { list, detail, insert, update, destroy, listPaged, deleteImg, updateImg } = require("../controller/user.controller");
+const { list, detail, update, destroy, listPaged, deleteImg, updateImg } = require("../controller/user.controller");
 const { register, login } = require('../controller/auth.controller');
 
 const router = express.Router();
 
 const jwtAuth = require('../middleware/jwtAuth');
-const { isAdmin, isCustomer } = require('../middleware/authorization');
+const { isAdmin } = require('../middleware/authorization');
 const uploadPP = require('../middleware/uploadProfilePic');
 const deleteProfileImg = require('../middleware/deleteProfilePic');
 
 router
-.get("/user", jwtAuth, isCustomer, list)
-.get("/user/:page", jwtAuth, isCustomer, listPaged)
-.get("/user/detail/:email",jwtAuth, isAdmin, detail)
-.post("/user/", jwtAuth, insert)
-.put("/user", jwtAuth, update)
-.put("/user/:email/changeimg", jwtAuth, uploadPP, deleteProfileImg, updateImg)
-.delete("/user/:email", jwtAuth, isAdmin, destroy)
-.delete("/user/:email/deleteimg", jwtAuth, deleteProfileImg, deleteImg)
-
-//register
-.post('/user/register', uploadPP, register)
-//login
+.get("/users", jwtAuth, list)
+.get("/user/:page", jwtAuth, listPaged)
+.get("/user/detail/:id",jwtAuth, isAdmin, detail)
+.put("/user/:id", jwtAuth, update)
+.put("/user/changeimg/:id", jwtAuth, uploadPP, deleteProfileImg, updateImg)
+.delete("/user/:id", jwtAuth, isAdmin, deleteProfileImg, destroy)
+.post('/user/register', register)
 .post('/user/login', login);
 
 module.exports = router;

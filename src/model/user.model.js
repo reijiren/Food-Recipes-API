@@ -1,7 +1,6 @@
 const db = require('../config/db');
 
 const userModel = {
-  // user list ascending
   selectAllUser: () => {
     return new Promise((resolve, reject) => {
       db.query('select * from users order by name', (err, res) => {
@@ -13,12 +12,15 @@ const userModel = {
     })
   },
 
-  // pagination user by 3 data each page
-  findUserPaged: (page) => {
+  findUserPaged: (name, page, sort, asc) => {
     return new Promise((resolve, reject) => {
       const limit = 3;
       const offset = (page - 1) * limit;
-      db.query(`select * from users order by name limit ${limit} offset ${offset}`, (err, res) => {
+
+      if(asc.toLowerCase() !== 'desc') asc='asc';
+      if(sort.toLowerCase() !== 'date_created') sort='name';
+
+      db.query(`select * from users where name ilike '%${name}%' order by ${sort} ${asc} limit ${limit} offset ${offset}`, (err, res) => {
         if (err) {
           reject(err);
         }
@@ -27,10 +29,9 @@ const userModel = {
     })
   },
 
-  // find user by email
-  findUser: (email) => {
+  findUser: (id) => {
     return new Promise((resolve, reject) => {
-      db.query(`select * from users where email='${email}'`, (err, res) => {
+      db.query(`select * from users where id = ${id}`, (err, res) => {
         if (err) {
           reject(err);
         }
@@ -39,10 +40,9 @@ const userModel = {
     })
   },
 
-  // insert new user
-  insertUser: (name, email, phone, pw) => {
+  deleteUser: (id) => {
     return new Promise((resolve, reject) => {
-      db.query(`insert into users (name, email, phone, password) values ('${name}', '${email}', '${phone}', '${pw}');`, (err, res) => {
+      db.query(`delete from users where id = ${id}`, (err, res) => {
         if (err) {
           reject(err);
         }
@@ -51,45 +51,24 @@ const userModel = {
     })
   },
 
-  // update user password
-  resetPassword: (email, pw) => {
-    return new Promise((resolve, reject) => {
-      db.query(`update users set password='${pw}' where email='${email}'`, (err, res) => {
-        if (err) {
-          reject(err);
-        }
-        resolve(res);
-      })
-    })
-  },
-
-  // delete user
-  deleteUser: (email) => {
-    return new Promise((resolve, reject) => {
-      db.query(`delete from users where email='${email}'`, (err, res) => {
-        if (err) {
-          reject(err);
-        }
-        resolve(res);
-      })
-    })
-  },
-
-  // register new user
-  register: ({name, email, phone, pw, level, image}) => {
+  register: ({name, email, phone, password, level, image}) => {
     return new Promise((resolve, reject) => {
       const date = new Date();
       const yyyy = date.getFullYear();
       let mm = date.getMonth() + 1;
       let dd = date.getDate();
+      let hh = date.getHours();
+      let min = date.getMinutes();
+      let sec = date.getSeconds();
 
       if (dd< 10) dd = '0' + dd;
       if (mm< 10) mm = '0' + mm;
 
-      const date_created = `${yyyy}-${mm}-${dd}`;
-      // console.log(date_created);
-      db.query(`insert into users (name, email, phone, password, level, image, date_created) values ('${name}', '${email}', '${phone}', '${pw}', ${level}, '${image}', '${date_created}');`, (err, res) => {
-      // db.query(`insert into users (name, email, phone, password, level, image) values ('${name}', '${email}', '${phone}', '${pw}', ${level}, '${image}');`, (err, res) => {  
+      const date_created = `${yyyy}-${mm}-${dd} ${hh}:${min}:${sec}`;
+      db.query(`
+        insert into users (name, email, phone, password, level, image, date_created)
+        values ('${name}', '${email}', '${phone}', '${password}', ${level}, '${image}', '${date_created}');
+      `, (err, res) => {
         if (err) {
           reject(err);
         }
@@ -98,8 +77,7 @@ const userModel = {
     })
   },
 
-  //model login
-  checkUsername: (email) => {
+  checkEmail: (email) => {
     return new Promise((resolve, reject) => {
         db.query(`select * from users where email='${email}'`, (err, res) => {
             if(err){
@@ -110,29 +88,24 @@ const userModel = {
     })
   },
 
-  //delete picture
-  deleteProfileImg: (email) => {
+  updateProfile: ({id, name, phone, password, image}) => {
     return new Promise((resolve, reject) => {
-      db.query(`update users set image='' where email='${email}'`, (err, res) => {
-          if(err){
-              reject(err);
-          }
-          resolve(res);
-      })
-    })
-  },
-
-  //update picture
-  changeProfileImg: (email, image) => {
-    return new Promise((resolve, reject) => {
-      db.query(`update users set image='${image}' where email='${email}'`, (err, res) => {
+      db.query(`
+        update users set
+        name = coalesce ($2, name),
+        phone = coalesce ($3, phone),
+        password = coalesce ($4, password),
+        image = coalesce ($5, image)
+        where id = $1
+      `, [id, name, phone, password, image],
+      (err, res) => {
         if (err) {
           reject(err);
         }
         resolve(res);
       })
     })
-  }
+  },
 }
 
 module.exports = userModel;

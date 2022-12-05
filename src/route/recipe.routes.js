@@ -1,6 +1,6 @@
 //declare express
 const express = require("express");
-const { list, detail, insert, update, destroy, listPaged, listComment, deleteImg, updateImg } = require("../controller/recipe.controller");
+const { list, detail, insert, update, destroy, listPaged, listComment, deleteImg, updateImg, find } = require("../controller/recipe.controller");
 
 const router = express.Router();
 
@@ -10,14 +10,13 @@ const uploadRP = require('../middleware/uploadRecipePic');
 const deleteRecipeImg = require('../middleware/deleteRecipesPic');
 
 router
-.get("/recipe", jwtAuth, list)
-.get("/recipe/:page", jwtAuth, listPaged)
-.get("/recipe/detail/:title", jwtAuth, detail)
-.get("/recipe/comment/:page", jwtAuth, listComment)
-.post("/recipe/add", jwtAuth, uploadRP, insert)
-.put("/recipe", jwtAuth, update)
-.put("/recipe/:title/changeimg", jwtAuth, uploadRP, deleteRecipeImg, updateImg)
-.delete("/recipe/:title", jwtAuth, destroy)
-.delete("/recipe/:title/img", jwtAuth, deleteRecipeImg, deleteImg);
+.get("/recipes", jwtAuth, list)
+.get("/recipes/:page", jwtAuth, listPaged)
+.get("/recipe/:id", jwtAuth, detail)
+.post("/recipe/find", jwtAuth, find)
+.post("/recipe/insert", jwtAuth, isCustomer, uploadRP, insert)
+.put("/recipe/:id", jwtAuth, update)
+.put("/recipe/changeimg/:id", jwtAuth, uploadRP, deleteRecipeImg, updateImg)
+.delete("/recipe/:id", jwtAuth, deleteRecipeImg, destroy);
 
 module.exports = router;

@@ -1,9 +1,8 @@
-// const { selectAll } = require("../model/user.model");
 const userModel = require("../model/user.model");
+const bcrypt= require('bcrypt');
 const { success, failed } = require('../helper/response');
 
 const userController = {
-    //method
     list: (req, res) => {
         userModel.selectAllUser()
         .then((result) => {
@@ -13,10 +12,14 @@ const userController = {
             failed(res, err.message, 'failed', 'Get all user failed')
         });
     },
+    
     listPaged: (req, res) => {
+        const name = req.query.name;
         const page = req.params.page;
+        const sort = req.query.sort;
+        const asc = req.query.asc;
 
-        userModel.findUserPaged(page)
+        userModel.findUserPaged(name, page, sort, asc)
         .then((result) => {
             success(res, result.rows, 'success', 'Get user success')
         })
@@ -24,69 +27,80 @@ const userController = {
             failed(res, err.message, 'failed', 'Get user failed')
         });
     },
-    detail: (req, res) => {
-        const email = req.params.email;
 
-        userModel.findUser(email)
+    detail: (req, res) => {
+        const id = req.params.id;
+
+        userModel.findUser(id)
         .then((result) => {
-            success(res, result.rows, 'success', 'Get detailed user success')
+            success(res, result.rows, 'success', 'Get user detail success')
         })
         .catch((err) => {
-            failed(res, err.message, 'failed', 'Get detailed user failed')
+            failed(res, err.message, 'failed', 'Get user detail failed')
         });
     },
-    insert: (req, res) => {
-        const { name, email, phone, pw } = req.body;
-        userModel.insertUser(name, email, phone, pw)
-        .then((result) => {
-            success(res, result.rows, 'success', 'Insert user success')
-        })
-        .catch((err) => {
-            failed(res, err.message, 'failed', 'Insert user failed')
-        });
-    },
+
     update: (req, res) => {
-        const { email, pw } = req.body;
-        userModel.resetPassword(email, pw)
+        const id = req.params.id;
+        const body = req.body;
+        const password = body.password ? bcrypt.hashSync(body.password, 10) : null;
+
+        const data = {
+            ...body,
+            password,
+            id
+        }
+
+        userModel.updateProfile(data)
         .then((result) => {
-            success(res, result.rows, 'success', 'Update user success')
+            userModel.findUser(id)
+            .then((result) => {
+                success(res, result.rows, 'success', 'Update user success')
+            })
+            .catch((err) => {
+                failed(res, err.message, 'failed', 'Get user detail failed')
+            })
         })
         .catch((err) => {
             failed(res, err.message, 'failed', 'Update user failed')
         });
     },
+
     updateImg: (req, res) => {
-        const email = req.params.email;
+        const id = req.params.id;
         const image = req.file.filename;
-        userModel.changeProfileImg(email, image)
+
+        const data = {
+            id,
+            image,
+        }
+
+        userModel.updateProfile(data)
         .then((result) => {
-            success(res, result.rows, 'success', 'Update user picture success')
+            userModel.findUser(id)
+            .then((result) => {
+                success(res, result.rows, 'success', 'Update user picture success')
+            })
+            .catch((err) => {
+                failed(res, err.message, 'failed', 'Get user detail failed')
+            })
         })
         .catch((err) => {
             failed(res, err.message, 'failed', 'Update user picture failed')
         });
     },
+
     destroy: (req, res) => {
-        const email = req.params.email;
-        userModel.deleteUser(email)
+        const id = req.params.id;
+
+        userModel.deleteUser(id)
         .then((result) => {
-            success(res, result.rows, 'success', 'Delete user success')
+            success(res, result.rowCount, 'success', 'Delete user success')
         })
         .catch((err) => {
             failed(res, err.message, 'failed', 'Delete user failed')
         });
     },
-    deleteImg: (req, res) => {
-        const email = req.params.email;
-
-        userModel.deleteProfileImg(email)
-        .then((result) => {
-            success(res, result.rows, 'success', 'Delete profile picture success')
-        })
-        .catch((err) => {
-            failed(res, err.message, 'failed', 'Delete profile picture failed')
-        });
-    }
 }
 
 module.exports = userController;

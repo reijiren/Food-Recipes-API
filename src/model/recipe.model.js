@@ -1,10 +1,9 @@
 const db = require("../config/db");
 
 const recipeModel = {
-    //recipe list ascending
     selectAllRecipes: () => {
         return new Promise((resolve, reject) => {
-            db.query(`select * from recipes order by title`, (err, res) => {
+            db.query(`select *, recipes.id as recipeid, recipes.image as recipeimg from recipes join users on owner = users.id order by title`, (err, res) => {
                 if(err){
                     reject(err);
                 }
@@ -13,28 +12,15 @@ const recipeModel = {
         })
     },
 
-    //pagination recipes by 4 data each page
-    findRecipesPaged: (page) => {
-        return new Promise((resolve, reject) => {
-            const limit = 4;
-            const offset = (page - 1) * limit;
-
-            db.query(`select * from recipes order by title limit ${limit} offset ${offset}`, (err, res) => {
-                if(err){
-                    reject(err);
-                }
-                resolve(res);
-            })
-        })
-    },
-
-    //show recipe comments with pagination
-    allRecipeComment: (id, page) => {
+    findRecipesPaged: (title, page, sort, asc) => {
         return new Promise((resolve, reject) => {
             const limit = 2;
             const offset = (page - 1) * limit;
 
-            db.query(`select * from comment where id_food=${id} limit ${limit} offset ${offset}`, (err, res) => {
+            if(asc.toLowerCase() !== 'desc') asc = 'asc';
+            if(sort.toLowerCase() !== 'date_created') sort = 'title';
+
+            db.query(`select *, recipes.id as recipeid, recipes.image as recipeimg from recipes join users on owner = users.id where title ilike '%${title}%' order by ${sort} ${asc} limit ${limit} offset ${offset}`, (err, res) => {
                 if(err){
                     reject(err);
                 }
@@ -43,10 +29,9 @@ const recipeModel = {
         })
     },
 
-    //find recipe by title
     findRecipe: (title) => {
         return new Promise((resolve, reject) => {
-            db.query(`select * from recipes where lower(title) like lower('%${title}%');`, (err, res) => {
+            db.query(`select *, recipes.id as recipeid, recipes.image as recipeimg from recipes join users on owner = users.id where title ilike '%${title}%';`, (err, res) => {
                 if(err){
                     reject(err);
                 }
@@ -55,8 +40,18 @@ const recipeModel = {
         })
     },
 
-    //insert new recipe
-    insertRecipe: ({title, ingredient, image}) => {
+    recipeDetail: (id) => {
+        return new Promise((resolve, reject) => {
+            db.query(`select *, recipes.id as recipeid, recipes.image as recipeimg from recipes join users on owner = users.id where recipes.id = ${id};`, (err, res) => {
+                if(err){
+                    reject(err);
+                }
+                resolve(res);
+            })
+        })
+    },
+
+    insertRecipe: ({title, ingredient, image, owner}) => {
         return new Promise((resolve, reject) => {
             const date = new Date();
             const yyyy = date.getFullYear();
@@ -67,7 +62,7 @@ const recipeModel = {
             if (mm< 10) mm = '0' + mm;
 
             const date_created = `${yyyy}-${mm}-${dd}`;
-            db.query(`insert into recipes (title, ingredient, date_created, image) values ('${title}', '${ingredient}', '${date_created}', '${image}');`, (err, res) => {
+            db.query(`insert into recipes (title, ingredient, owner, date_created, image) values ('${title}', '${ingredient}', ${owner}, '${date_created}', '${image}');`, (err, res) => {
                 if(err){
                     reject(err);
                 }
@@ -76,10 +71,16 @@ const recipeModel = {
         })
     },
 
-    //update recipe
-    updateRecipe: (title, ingredient) => {
+    updateRecipe: ({id, title, ingredient, image}) => {
         return new Promise((resolve, reject) => {
-            db.query(`update recipes set ingredient='${ingredient}' where lower(title)=lower('${title}')`, (err, res) => {
+            db.query(`
+                update recipes set
+                title = coalesce ($2, title),
+                ingredient = coalesce ($3, ingredient),
+                image = coalesce ($4, image)
+                where id = $1
+            `, [id, title, ingredient, image],
+            (err, res) => {
                 if(err){
                     reject(err);
                 }
@@ -88,10 +89,9 @@ const recipeModel = {
         })
     },
 
-    //delete recipe
-    deleteRecipe: (title) => {
+    deleteRecipe: (id) => {
         return new Promise((resolve, reject) => {
-            db.query(`delete from recipes where lower(title)=lower('${title}')`, (err, res) => {
+            db.query(`delete from recipes where id = ${id}`, (err, res) => {
                 if(err){
                     reject(err);
                 }
@@ -99,30 +99,6 @@ const recipeModel = {
             })
         })
     },
-
-    //delete picture
-    deleteRecipeImg: (title) => {
-        return new Promise((resolve, reject) => {
-            db.query(`update recipes set image='' where lower(title)=lower('${title}')`, (err, res) => {
-                if(err){
-                    reject(err);
-                }
-                resolve(res);
-            })
-        })
-    },
-    
-    //update picture
-    changeRecipeImg: (title, image) => {
-        return new Promise((resolve, reject) => {
-            db.query(`update recipes set image='${image}' where lower(title)=lower('${title}')`, (err, res) => {
-                if(err){
-                    reject(err);
-                }
-                resolve(res);
-            })
-        })
-    }
 }
 
 module.exports = recipeModel;

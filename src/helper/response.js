@@ -16,9 +16,10 @@ module.exports = {
             message
         })
     },
-    successWithToken: (res, token, status, message) => {
+    successWithToken: (res, data, token, status, message) => {
         res.json({
             status,
+            data,
             token,
             message
         })

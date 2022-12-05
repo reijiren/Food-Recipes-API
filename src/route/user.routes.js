@@ -12,10 +12,10 @@ const deleteProfileImg = require('../middleware/deleteProfilePic');
 router
 .get("/users", list)
 .get("/user/:page", listPaged)
-.get("/user/detail/:id", isAdmin, detail)
+.get("/user/detail/:id", detail)
 .put("/user/:id", update)
 .put("/user/changeimg/:id", uploadPP, deleteProfileImg, updateImg)
-.delete("/user/:id", isAdmin, deleteProfileImg, destroy)
+.delete("/user/:id", deleteProfileImg, destroy)
 .get("/email/:email", checkEmail)
 .post('/user/register', register)
 .post('/user/login', login);

@@ -14,7 +14,7 @@ router
 .get("/recipes/:page", listPaged)
 .get("/recipe/:id", detail)
 .post("/recipe/find", find)
-.post("/recipe/insert", isCustomer, uploadRP, insert)
+.post("/recipe/insert", uploadRP, insert)
 .put("/recipe/:id", update)
 .put("/recipe/changeimg/:id", uploadRP, deleteRecipeImg, updateImg)
 .delete("/recipe/:id", deleteRecipeImg, destroy);

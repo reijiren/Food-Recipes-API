@@ -10,13 +10,41 @@
 			"name": "Users",
 			"item": [
 				{
+					"name": "ADMIN REGISTER",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"admin\",\r\n    \"email\": \"admin@gmail.com\",\r\n    \"phone\": \"081576525539\",\r\n    \"password\": \"admin\",\r\n    \"level\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/user/register",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "USERS REGISTER",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"reyrey\",\r\n    \"email\": \"reyrey@gmail.com\",\r\n    \"phone\": \"081571625539\",\r\n    \"password\": \"reyrey\",\r\n    \"level\": 1\r\n}",
+							"raw": "{\r\n    \"name\": \"reyrey\",\r\n    \"email\": \"reyrey@gmail.com\",\r\n    \"phone\": \"081573425539\",\r\n    \"password\": \"reyrey\",\r\n    \"level\": 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -281,7 +309,8 @@
 							{
 								"key": "token",
 								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJleXJleUBnbWFpbC5jb20iLCJsZXZlbCI6MSwiaWF0IjoxNjcwMjQxMTc0fQ.G6CW7VfM0EhDlaZ1LEby1BWB4ulmvGJSbT7oKMou_Vg",
-								"type": "text"
+								"type": "text",
+								"disabled": true
 							}
 						],
 						"url": {
@@ -309,7 +338,7 @@
 							}
 						],
 						"url": {
-							"raw": "localhost:3001/recipes/1?title=p&sort=title&asc=desc",
+							"raw": "localhost:3001/recipes/1?title=&asc=desc&sort=title",
 							"host": [
 								"localhost"
 							],
@@ -321,15 +350,15 @@
 							"query": [
 								{
 									"key": "title",
-									"value": "p"
-								},
-								{
-									"key": "sort",
-									"value": "title"
+									"value": ""
 								},
 								{
 									"key": "asc",
 									"value": "desc"
+								},
+								{
+									"key": "sort",
+									"value": "title"
 								}
 							]
 						}
@@ -471,18 +500,18 @@
 							"formdata": [
 								{
 									"key": "title",
-									"value": "Teh Manis",
+									"value": "Jus Apel",
 									"type": "text"
 								},
 								{
 									"key": "ingredient",
-									"value": "Teh, Gula",
+									"value": "Apel, Air, Gula",
 									"type": "text"
 								},
 								{
 									"key": "image",
 									"type": "file",
-									"src": "/C:/Users/rhefa/Documents/PijarCamp/Backend/Recipe/teh manis.jfif"
+									"src": "/C:/Users/rhefa/Documents/PijarCamp/Backend/Recipe/jus apel.jfif"
 								},
 								{
 									"key": "owner",

@@ -5,10 +5,6 @@
   <p align="center">
     <image align="center" width="200" src='./assets/' />
   </p>
-
-  <p align="center">
-    <br />
-  </p>
 </p>
 
 
@@ -21,22 +17,23 @@
 * [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
-* [Related Project](#related-project-backend)
-* [Contact](#contact)
+* [Contributing](#contributing)
+* [Related Project](#related-project)
 
 
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-
-Food Recipes API is a RESTful API used in .
+Food Recipes API is a RESTful API used in [Food Recipe Aplication](https://github.com/reijiren/Food-Recipes). This API handles every functions in Food Recipes Application, such as:
+- User   : Register, login, update and delete
+- Recipe : Insert new recipe, update, delete, like a recipe, save a recipe, and get list of recipe
 
 ### Built With
 
 * [Node JS](https://nodejs.org/en/docs/)
 * [Express JS](https://expressjs.com/)
-* [Node Mailer](https://nodemailer.com/)
+* [PostgreSQL](https://www.postgresql.org/)
 
 
 <!-- GETTING STARTED -->
@@ -44,9 +41,9 @@ Food Recipes API is a RESTful API used in .
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
+This is an example of things you need to use the application and how to install them.
 
-* [nodejs](https://nodejs.org/en/download/)
+* [node.js](https://nodejs.org/en/download/)
 
 ### Installation
 
@@ -86,4 +83,7 @@ Contributions are what make the open source community such an amazing place to b
 
 
 
+<!-- RELATED PROJECT -->
 ## Related Project
+Food Recipes application
+* [Food Recipes Application](https://github.com/reijiren/Food-Recipes)

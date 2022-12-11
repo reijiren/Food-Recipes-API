@@ -19,7 +19,7 @@ module.exports = {
                     phone,
                     password: hash,
                     level,
-                    image: 'default.png',
+                    image: 'https://res.cloudinary.com/dmkviiqax/image/upload/v1670737726/default_frc_pr_f6t9gz.png',
                 }
 
                 userModel.checkEmail(email)

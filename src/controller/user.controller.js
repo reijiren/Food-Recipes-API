@@ -1,5 +1,6 @@
 const userModel = require("../model/user.model");
 const bcrypt= require('bcrypt');
+const cloudinary = require('../helper/cloudinary');
 const { success, failed } = require('../helper/response');
 
 const userController = {
@@ -66,13 +67,13 @@ const userController = {
         });
     },
 
-    updateImg: (req, res) => {
-        const id = req.params.id;
-        const image = req.file.filename;
-
+    updateImg: async(req, res) => {
+        const id = await req.params.id;
+        const image = await cloudinary.uploader.upload(req.file.path);
+        console.log()
         const data = {
             id,
-            image,
+            image: `${image.secure_url}|&&|${image.public_id}`,
         }
 
         userModel.updateProfile(data)

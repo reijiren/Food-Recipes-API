@@ -1,4 +1,5 @@
 const recipeModel = require("../model/recipe.model");
+const cloudinary = require('../helper/cloudinary');
 const { success, failed } = require('../helper/response');
 
 const recipeController = {
@@ -80,16 +81,16 @@ const recipeController = {
             failed(res, err.message, 'failed', 'Get recipe saved list failed')
         });
     },
-    insert: (req, res) => {
+    insert: async(req, res) => {
         try{
             const { title, ingredient, owner } = req.body;
-            const image = req.file.filename;
+            const image = await cloudinary.uploader.upload(req.file.path);
 
             const data = {
                 title,
                 ingredient,
                 owner,
-                image: image || 'null.jpg',
+                image: `${image.secure_url}|&&|${image.public_id}` || 'https://res.cloudinary.com/dmkviiqax/image/upload/v1670740075/null_jxiqhn.jpg',
             }
 
             recipeModel.insertRecipe(data)
@@ -126,13 +127,13 @@ const recipeController = {
             failed(res, err.message, 'failed', 'Update recipe failed')
         });
     },
-    updateImg: (req, res) => {
+    updateImg: async(req, res) => {
         const id = req.params.id;
-        const image = req.file.filename;
+        const image = await cloudinary.uploader.upload(req.file.path);
 
         const data = {
             id,
-            image,
+            image: `${image.secure_url}|&&|${image.public_id}`,
         };
 
         recipeModel.updateRecipe(data)

@@ -2,24 +2,10 @@ const multer = require('multer');
 const path = require('path');
 
 const multerUpload = multer({
-    storage: multer.diskStorage({
-        destination: (req, file, cb) => {
-            cb(null, './assets/recipes');
-        },
-        filename: (req, file, cb) => {
-            const name = path.basename(file.originalname);
-            const ext = path.extname(file.originalname);
-            const nameSplit = name.split(`${ext}`);
-
-            const fileName = nameSplit[0] + '-' + Date.now() + '' + ext;
-            cb(null, fileName)
-        }
-    }),
-
+    storage: multer.diskStorage({}),
     limits:{
         fileSize: 2 * 1024 * 1024,
     },
-
     fileFilter: (req, file, cb) => {
         const ext = path.extname(file.originalname);
         if(ext === '.jpg' || ext === '.png' || ext === '.jpeg' || ext === '.jfif'){

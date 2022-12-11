@@ -6,7 +6,7 @@
     <image align="center" width="200" src='./assets/' />
   </p>
   <p align="center">
-    [View API Demo](https://food-recipes-rhefrz.cyclic.app)
+    <a href="https://food-recipes-rhefrz.cyclic.app">View API Demo</a>
   </p>
 </p>
 
@@ -68,7 +68,9 @@ DB_PASSWORD = your_db_password
 DB_PORT = your_db_port
 PORT = 3001
 jwt_secret = your_token_secret
-
+CLOUD_NAME = your_cloudinary_name
+API_KEY = your_cloudinary_api_key
+API_SECRET = your_cloudinary_api_secret
 ```
 
 

@@ -84,7 +84,7 @@ const recipeController = {
     insert: async(req, res) => {
         try{
             const { title, ingredient, owner } = await req.body;
-            const image = await cloudinary.uploader.upload(req.file.path) || {secure_url: "https://res.cloudinary.com/dmkviiqax/image/upload/v1670740075/null_jxiqhn.jpg", public_id: ""};
+            const image = req.file ? await cloudinary.uploader.upload(req.file.path) : {secure_url: "https://res.cloudinary.com/dmkviiqax/image/upload/v1670740075/null_jxiqhn.jpg", public_id: ""};
 
             const data = {
                 title,

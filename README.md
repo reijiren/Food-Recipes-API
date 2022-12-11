@@ -5,6 +5,9 @@
   <p align="center">
     <image align="center" width="200" src='./assets/' />
   </p>
+  <p align="center">
+    [View API Demo](https://food-recipes-rhefrz.cyclic.app)
+  </p>
 </p>
 
 
@@ -25,7 +28,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Food Recipes API is a RESTful API used in [Food Recipe Aplication](https://github.com/reijiren/Food-Recipes). This API handles every functions in Food Recipes Application, such as:
+Food Recipes API is a RESTful API used in [Food Recipe Aplication](https://food-recipes-rhefrz.vercel.app). This API handles every functions in Food Recipes Application, such as:
 - User   : Register, login, update and delete
 - Recipe : Insert new recipe, update, delete, like a recipe, save a recipe, and get list of recipe
 
@@ -34,6 +37,7 @@ Food Recipes API is a RESTful API used in [Food Recipe Aplication](https://githu
 * [Node JS](https://nodejs.org/en/docs/)
 * [Express JS](https://expressjs.com/)
 * [PostgreSQL](https://www.postgresql.org/)
+* [Cloudinary](https://cloudinary.com/)
 
 
 <!-- GETTING STARTED -->
@@ -85,5 +89,5 @@ Contributions are what make the open source community such an amazing place to b
 
 <!-- RELATED PROJECT -->
 ## Related Project
-Food Recipes application
-* [Food Recipes Application](https://github.com/reijiren/Food-Recipes)
+This API has been used in [Food Recipe Application](https://food-recipes-rhefrz.vercel.app)
+* [View Documentation](https://github.com/reijiren/Food-Recipes)

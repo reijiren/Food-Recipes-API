@@ -3,7 +3,7 @@
 
   <h3 align="center">Food Recipes API</h3>
   <p align="center">
-    <image align="center" width="200" src='./assets/' />
+    <image align="center" width="400" src='./assets/frlogo.png' />
   </p>
   <p align="center">
     <a href="https://food-recipes-rhefrz.cyclic.app">View API Demo</a>
@@ -16,7 +16,8 @@
 ## Table of Contents
 
 * [About the Project](#about-the-project)
-  * [Built With](#built-with)
+  * [Project Structure](#project-structure)
+  * [Package Modules](#package-modules)
 * [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
@@ -32,12 +33,40 @@ Food Recipes API is a RESTful API used in [Food Recipe Aplication](https://food-
 - User   : Register, login, update and delete
 - Recipe : Insert new recipe, update, delete, like a recipe, save a recipe, and get list of recipe
 
-### Built With
+### Project Structure
+```
+|── Food-Recipes-API
+   |── assets                                  # Public assets
+   |── src                                     # Project source code
+       |── config                              # Database configuration
+       |── controller                          # Request controller
+       |── helper                              # Cloudinary setting, Env setting, JWT generation and response
+       |── middleware                          # Middleware configuration
+       |── model                               # Database query model
+       |── route                               # API Endpoint routes
+   |── .env                                    # Environment variables   
+   |── .gitignore                              # Files that should be ignored  
+   |── db.sql                                  # SQL database creation
+   |── Food_Recipes.postman_collection.json    # Postman Documentation
+   |── index.js                                # Index file
+   |── README.md                               # Readme
+```
+
+### Package Modules
+
+Below are lists of modules used in this API:
 
 * [Node JS](https://nodejs.org/en/docs/)
 * [Express JS](https://expressjs.com/)
 * [PostgreSQL](https://www.postgresql.org/)
 * [Cloudinary](https://cloudinary.com/)
+* [Dotenv](https://www.npmjs.com/package/dotenv)
+* [Bcrypt](https://www.npmjs.com/package/bcrypt)
+* [CORS](https://www.npmjs.com/package/cors)
+* [JSONWebToken](https://www.npmjs.com/package/jsonwebtoken)
+* [Multer](https://www.npmjs.com/package/multer)
+* [Nodemon](https://www.npmjs.com/package/nodemon)
+* [Pg](https://www.npmjs.com/package/pg)
 
 
 <!-- GETTING STARTED -->
